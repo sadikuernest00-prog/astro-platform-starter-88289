@@ -1,172 +1,134 @@
-
 ---
-const base = import.meta.env.BASE_URL ?? "/";
-const vippsQr = `${base}images/vipps-qr.png`;
-const whatsappNumber = "4792928373";
+const base = import.meta.env.BASE_URL;
+const vippsQr = `${base}images/vipps-qr.png`; // put file in /public/images/
+const whatsappNumber = "4792928373"; // your number (from your header)
 ---
 
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Checkout</title>
-  <style>
-    body{ font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; padding:24px; max-width:1000px; margin:0 auto; }
-    header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
-    a{ color:#111; text-decoration:none; }
-    a:hover{ text-decoration:underline; }
-    .grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap:18px; }
-    @media (max-width: 900px){ .grid{ grid-template-columns:1fr; } }
-    .box{ border:1px solid #ddd; border-radius:14px; padding:16px; background:#fff; }
-    .row{ display:flex; justify-content:space-between; gap:12px; padding:10px 0; border-bottom:1px solid #eee; }
-    .muted{ color:#666; }
-    img{ max-width:260px; border:1px solid #ddd; border-radius:12px; display:block; }
-    input,textarea{ width:100%; padding:12px; border:1px solid #ddd; margin-top:8px; border-radius:10px; }
-    button{ padding:12px 14px; font-weight:800; cursor:pointer; border:1px solid #111; background:#111; color:#fff; border-radius:10px; width:100%; }
-    .warn{ background:#fff7ed; border:1px solid #fed7aa; color:#9a3412; padding:10px; border-radius:10px; }
-    .total{ font-weight:900; font-size:18px; }
-  </style>
-</head>
-<body>
-
-  <header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Checkout</title>
+    <style>
+      body{ font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; padding:24px; max-width:900px; margin:0 auto; }
+      .box{ border:1px solid #ddd; padding:16px; margin:16px 0; }
+      .row{ display:flex; justify-content:space-between; gap:12px; padding:8px 0; border-bottom:1px solid #eee; }
+      .muted{ color:#666; }
+      img{ max-width:260px; border:1px solid #ddd; }
+      input{ width:100%; padding:12px; border:1px solid #ddd; margin-top:8px; }
+      button{ padding:12px 14px; font-weight:700; cursor:pointer; border:1px solid #111; background:#111; color:#fff; }
+      a{ color:#111; }
+    </style>
+  </head>
+  <body>
     <a href={`${base}`}>← Back to shop</a>
-    <div style="font-weight:800;">Amicbridge</div>
-  </header>
+    <h1>Checkout</h1>
 
-  <h1 style="margin:8px 0 6px;">Checkout</h1>
-  <p class="muted" style="margin:0 0 16px;">
-    Steps: (1) Pay with Vipps, (2) Send order details on WhatsApp.
-  </p>
-
-  <div class="grid">
     <div class="box">
-      <h2 style="margin-top:0;">Customer details</h2>
-
-      <label>Full name</label>
-      <input id="name" placeholder="Your name" autocomplete="name" />
-
-      <label style="margin-top:12px; display:block;">Email</label>
-      <input id="email" placeholder="your@email.com" autocomplete="email" />
-
-      <label style="margin-top:12px; display:block;">Address</label>
-      <textarea id="address" rows="3" placeholder="Street, city, zip/postal code" autocomplete="street-address"></textarea>
-
-      <label style="margin-top:12px; display:block;">Vipps name / phone (so you can match payment)</label>
-      <input id="vippsId" placeholder="e.g. +47..." />
-
-      <label style="margin-top:12px; display:block;">Order notes (optional)</label>
-      <textarea id="notes" rows="3" placeholder="Delivery notes, size notes, etc."></textarea>
-
-      <div class="warn" style="margin-top:12px;">
-        Important: Vipps Privat can’t be auto-verified by the website. We ship only after we see the payment in Vipps.
-      </div>
+      <h2>1) Your order</h2>
+      <div id="items"></div>
+      <p class="muted" id="total"></p>
     </div>
 
     <div class="box">
-      <h2 style="margin-top:0;">Your order</h2>
-      <div id="items"></div>
-      <p class="total" id="total"></p>
-
-      <h3 style="margin-top:18px;">Pay with Vipps (Privat)</h3>
-      <p class="muted">Scan this QR code and pay the exact total amount.</p>
+      <h2>2) Pay with Vipps (Privat)</h2>
+      <p class="muted">Scan this QR code in Vipps and pay the total amount.</p>
       <img src={vippsQr} alt="Vipps QR code" />
       <p class="muted" id="payHint"></p>
-
-      <button id="send" style="margin-top:14px;">Send order details on WhatsApp</button>
-      <p class="muted" id="msg" style="margin-top:10px;"></p>
-
-      <button id="clear" style="margin-top:10px; background:#fff; color:#111;">Clear cart</button>
     </div>
-  </div>
 
-  <script>
-    const CART_KEY = "amicbridge_cart_v1";
+    <div class="box">
+      <h2>3) Send proof / details</h2>
+      <label>
+        Your Vipps name or phone number
+        <input id="vippsId" placeholder="e.g. +47 900 00 000 or your name in Vipps" />
+      </label>
 
-    function readCart() {
-      try { return JSON.parse(localStorage.getItem(CART_KEY) || "[]"); }
-      catch { return []; }
-    }
-    function writeCart(cart) {
-      localStorage.setItem(CART_KEY, JSON.stringify(cart));
-    }
-    function total(cart){
-      return cart.reduce((s, i) => s + (Number(i.price)||0) * (Number(i.qty)||0), 0);
-    }
+      <p class="muted">
+        After you pay, click the button below. It will open WhatsApp with your order details.
+      </p>
 
-    function render(){
-      const cart = readCart();
-      const itemsEl = document.getElementById("items");
-      const totalEl = document.getElementById("total");
-      const payHint = document.getElementById("payHint");
+      <button id="send">I have paid – send order</button>
+      <p class="muted" id="msg"></p>
+    </div>
 
-      if(!cart.length){
-        itemsEl.innerHTML = "<p class='muted'>Your cart is empty. Go back and add items.</p>";
-        totalEl.textContent = "";
-        payHint.textContent = "";
-        return;
+    <script>
+      const CART_KEY = "amicbridge_cart_v1";
+
+      function readCart() {
+        try { return JSON.parse(localStorage.getItem(CART_KEY) || "[]"); }
+        catch { return []; }
       }
 
-      itemsEl.innerHTML = cart.map(i => `
-        <div class="row">
-          <div>
-            <div style="font-weight:800;">${i.name}</div>
-            <div class="muted">Size: ${i.size} • Color: ${i.color} • Qty: ${i.qty}</div>
+      function calcTotal(cart){
+        return cart.reduce((s, i) => s + (Number(i.price)||0) * (Number(i.qty)||0), 0);
+      }
+
+      function render(){
+        const cart = readCart();
+        const itemsEl = document.getElementById("items");
+        const totalEl = document.getElementById("total");
+        const payHint = document.getElementById("payHint");
+
+        if(!cart.length){
+          itemsEl.innerHTML = "<p>Your cart is empty.</p>";
+          totalEl.textContent = "";
+          payHint.textContent = "";
+          return;
+        }
+
+        itemsEl.innerHTML = cart.map(i => `
+          <div class="row">
+            <div>
+              <div><b>${i.name}</b></div>
+              <div class="muted">Size: ${i.size} • Color: ${i.color} • Qty: ${i.qty}</div>
+            </div>
+            <div>${i.price * i.qty} NOK</div>
           </div>
-          <div style="font-weight:800;">${i.price * i.qty} NOK</div>
-        </div>
-      `).join("");
+        `).join("");
 
-      const t = total(cart);
-      totalEl.textContent = `Total: ${t} NOK`;
-      payHint.textContent = `Pay exactly: ${t} NOK`;
-    }
+        const total = calcTotal(cart);
+        totalEl.textContent = `Total: ${total} NOK`;
+        payHint.textContent = `Pay exactly: ${total} NOK`;
+      }
 
-    render();
-
-    document.getElementById("clear").addEventListener("click", () => {
-      localStorage.removeItem(CART_KEY);
       render();
-      document.getElementById("msg").textContent = "Cart cleared.";
-    });
 
-    document.getElementById("send").addEventListener("click", () => {
-      const msgEl = document.getElementById("msg");
-      const cart = readCart();
-      if(!cart.length){ msgEl.textContent = "Cart is empty."; return; }
+      document.getElementById("send").addEventListener("click", () => {
+        const msgEl = document.getElementById("msg");
+        const cart = readCart();
+        if(!cart.length){
+          msgEl.textContent = "Cart is empty.";
+          return;
+        }
 
-      const name = (document.getElementById("name").value || "").trim();
-      const email = (document.getElementById("email").value || "").trim();
-      const address = (document.getElementById("address").value || "").trim();
-      const vippsId = (document.getElementById("vippsId").value || "").trim();
-      const notes = (document.getElementById("notes").value || "").trim();
+        const vippsId = (document.getElementById("vippsId").value || "").trim();
+        if(!vippsId){
+          msgEl.textContent = "Please enter your Vipps name or phone number.";
+          return;
+        }
 
-      if(!name){ msgEl.textContent = "Please enter full name."; return; }
-      if(!address){ msgEl.textContent = "Please enter address."; return; }
-      if(!vippsId){ msgEl.textContent = "Please enter Vipps name/phone."; return; }
+        const total = cart.reduce((s, i) => s + (Number(i.price)||0)*(Number(i.qty)||0), 0);
 
-      const t = total(cart);
-      const orderId = `AMIC-${Date.now()}`;
+        const orderLines = cart.map(i =>
+          `- ${i.name} | ${i.size} | ${i.color} | qty ${i.qty} | ${i.price} NOK`
+        ).join("%0A");
 
-      const lines = cart.map(i =>
-        `- ${i.name} | ${i.size} | ${i.color} | qty ${i.qty} | ${i.price} NOK`
-      ).join("%0A");
+        const orderId = `AMIC-${Date.now()}`; // simple unique id
 
-      const text =
-        `New order: ${orderId}%0A` +
-        `Name: ${encodeURIComponent(name)}%0A` +
-        `Email: ${encodeURIComponent(email)}%0A` +
-        `Vipps payer: ${encodeURIComponent(vippsId)}%0A` +
-        `Total paid: ${t} NOK%0A%0A` +
-        `Address:%0A${encodeURIComponent(address)}%0A%0A` +
-        (notes ? `Notes:%0A${encodeURIComponent(notes)}%0A%0A` : "") +
-        `Items:%0A${lines}`;
+        const text =
+          `New order: ${orderId}%0A` +
+          `Vipps payer: ${encodeURIComponent(vippsId)}%0A` +
+          `Total paid: ${total} NOK%0A%0A` +
+          `Items:%0A${orderLines}%0A%0A` +
+          `Delivery info (write here):`;
 
-      window.open(`https://wa.me/${"4792928373"}?text=${text}`, "_blank");
-      msgEl.textContent = "WhatsApp opened. Send the message to confirm your order.";
-    });
-  </script>
+        const url = `https://wa.me/${whatsappNumber}?text=${text}`;
+        window.open(url, "_blank");
 
-</body>
+        msgEl.textContent = "Opened WhatsApp. Please send the message to confirm your order.";
+      });
+    </script>
+  </body>
 </html>
