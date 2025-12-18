@@ -1,0 +1,307 @@
+---
+const base = import.meta.env.BASE_URL;
+const FORMSPREE_ACTION = "https://formspree.io/f/xzznjkvd";
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — Amicbridge</title>
+
+  <style>
+    :root{--bg:#f7f6f4;--text:#151515;--muted:#6b6b6b;--border:#dedede;--card:#fff;}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    header{padding:24px 40px;display:flex;justify-content:space-between;align-items:center}
+    a{color:var(--text);text-decoration:none}
+    a:hover{text-decoration:underline}
+    main{max-width:1100px;margin:0 auto;padding:0 40px 70px}
+    h1{margin:16px 0 8px;font-size:34px}
+    .muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;margin-top:18px}
+    .card{background:var(--card);border:1px solid var(--border);padding:16px;border-radius:12px}
+    label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+    input,textarea{width:100%;padding:12px;border:1px solid var(--border);margin-top:6px;font-size:15px;border-radius:10px}
+    textarea{min-height:90px;resize:vertical}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .items{display:flex;flex-direction:column;gap:12px;margin-top:10px}
+    .item{border-top:1px solid var(--border);padding-top:12px;display:grid;grid-template-columns:1fr auto;gap:12px}
+    .item:first-child{border-top:0;padding-top:0}
+    .meta{color:var(--muted);font-size:13px;line-height:1.35}
+    .controls{display:flex;flex-direction:column;gap:8px;align-items:flex-end;min-width:160px}
+    .qty{display:grid;grid-template-columns:36px 44px 36px;border:1px solid var(--border);background:#fff;border-radius:12px;overflow:hidden}
+    .qty button{border:0;background:#fff;cursor:pointer;font-size:18px;padding:8px 0}
+    .qty div{display:flex;align-items:center;justify-content:center;font-weight:900;border-left:1px solid var(--border);border-right:1px solid var(--border)}
+    .thumb{width:54px;height:54px;border:1px solid var(--border);background:#fff;object-fit:cover;border-radius:12px}
+    .leftline{display:flex;gap:12px}
+    .price{font-weight:900}
+    .totals{margin-top:12px;border-top:1px solid var(--border);padding-top:12px}
+    .totalsRow{display:flex;justify-content:space-between;margin:6px 0}
+    .stack{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .btn{padding:14px 12px;border:1px solid var(--text);background:var(--text);color:#fff;cursor:pointer;font-weight:900;width:100%;border-radius:12px}
+    .btn.secondary{background:#fff;color:var(--text);border-color:var(--border)}
+    .error{color:#b42318;font-size:13px;margin-top:10px;display:none}
+    .ok{color:#1a7f37;font-size:13px;margin-top:10px;display:none}
+    .step{border:1px solid var(--border);background:#fff;padding:14px;border-radius:12px}
+    .badge{width:28px;height:28px;border-radius:999px;background:var(--text);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center}
+    .stepTitle{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+    .vippsNumber{font-size:26px;font-weight:950;margin:6px 0 10px}
+    .pillrow{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{border:1px solid var(--border);padding:10px 12px;background:#fff;cursor:pointer;font-weight:900;border-radius:12px}
+    @media (max-width:900px){header{padding:18px}main{padding:0 18px 56px}.grid{grid-template-columns:1fr}.controls{align-items:stretch}}
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href={`${base}`}>← Back to shop</a>
+    <a href={`${base}`} class="muted">Amicbridge</a>
+  </header>
+
+  <main>
+    <h1>Checkout</h1>
+    <div class="muted">Two steps: (1) Pay with Vipps, (2) Send order details.</div>
+
+    <div class="grid">
+      <section class="card">
+        <h2 style="margin:0 0 10px;font-size:18px">Customer details</h2>
+
+        <form id="detailsForm" action={FORMSPREE_ACTION} method="POST">
+          <div class="row2">
+            <div>
+              <label for="name">Full name</label>
+              <input id="name" name="name" autocomplete="name" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <label for="address">Address</label>
+            <input id="address" name="address" autocomplete="street-address" required />
+          </div>
+
+          <div class="row2" style="margin-top:12px">
+            <div>
+              <label for="city">City</label>
+              <input id="city" name="city" autocomplete="address-level2" required />
+            </div>
+            <div>
+              <label for="zip">ZIP / Postal code</label>
+              <input id="zip" name="zip" autocomplete="postal-code" required />
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <label for="notes">Order notes (optional)</label>
+            <textarea id="notes" name="notes" placeholder="Delivery notes, etc."></textarea>
+          </div>
+
+          <input type="hidden" id="cartSummary" name="cartSummary" value="" />
+          <input type="hidden" id="orderTotal" name="orderTotal" value="" />
+        </form>
+
+        <div class="muted" style="font-size:12px;margin-top:12px">
+          Pay in Vipps first, then click “Send order details” so we can match your payment to your order.
+        </div>
+      </section>
+
+      <aside class="card">
+        <h2 style="margin:0 0 10px;font-size:18px">Your order</h2>
+
+        <div id="emptyCart" class="muted" style="display:none;margin-top:6px">
+          Your cart is empty.
+        </div>
+
+        <div id="items" class="items"></div>
+
+        <div class="totals" id="totals" style="display:none">
+          <div class="totalsRow">
+            <span class="muted">Subtotal</span>
+            <span id="subtotal">0</span>
+          </div>
+          <div class="totalsRow">
+            <strong>Total</strong>
+            <strong id="total">0</strong>
+          </div>
+
+          <div class="stack">
+            <div class="step">
+              <div class="stepTitle">
+                <div class="badge">1</div>
+                <div style="font-weight:950">Pay with Vipps (Private)</div>
+              </div>
+
+              <div class="meta">Send the <strong>Total</strong> amount to Vipps number:</div>
+              <div class="vippsNumber" id="vippsNumber">92928373</div>
+              <div class="meta">Message: <strong>Your name + product</strong></div>
+
+              <div class="pillrow" style="margin-top:10px">
+                <button class="pill" id="copyVipps" type="button">Copy Vipps number</button>
+                <button class="pill" id="copyTotal" type="button">Copy total</button>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="stepTitle">
+                <div class="badge">2</div>
+                <div style="font-weight:950">Send order details</div>
+              </div>
+
+              <button class="btn secondary" id="sendBtn" type="button">Send order details</button>
+              <p class="error" id="err"></p>
+              <p class="ok" id="ok"></p>
+
+              <div class="muted" style="font-size:12px">
+                This sends your details + cart to our inbox so we can confirm your Vipps payment and ship.
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const fmt = (n) => new Intl.NumberFormat("en-US", { style:"currency", currency:"NOK" }).format(Number(n||0));
+
+    function readCart(){ try{ return JSON.parse(localStorage.getItem("cart")||"[]"); }catch{ return []; } }
+    function writeCart(c){ localStorage.setItem("cart", JSON.stringify(c)); }
+    function subtotal(cart){ return cart.reduce((s,it)=> s + Number(it.price||0)*Number(it.quantity||1), 0); }
+
+    const elItems = document.getElementById("items");
+    const elEmpty = document.getElementById("emptyCart");
+    const elTotals = document.getElementById("totals");
+    const elSubtotal = document.getElementById("subtotal");
+    const elTotal = document.getElementById("total");
+
+    const sendBtn = document.getElementById("sendBtn");
+    const err = document.getElementById("err");
+    const ok = document.getElementById("ok");
+
+    const detailsForm = document.getElementById("detailsForm");
+    const cartSummary = document.getElementById("cartSummary");
+    const orderTotal = document.getElementById("orderTotal");
+
+    const copyVipps = document.getElementById("copyVipps");
+    const copyTotal = document.getElementById("copyTotal");
+    const vippsNumberEl = document.getElementById("vippsNumber");
+
+    function render(){
+      const cart = readCart();
+
+      if(!cart.length){
+        elEmpty.style.display="block";
+        elTotals.style.display="none";
+        elItems.innerHTML="";
+        cartSummary.value="[]";
+        orderTotal.value="0";
+        copyTotal.dataset.totalText="";
+        return;
+      }
+
+      elEmpty.style.display="none";
+      elTotals.style.display="block";
+
+      elItems.innerHTML = cart.map((it, idx) => {
+        const name = it.name || it.id || "Item";
+        const qty = Number(it.quantity || 1);
+        const meta = [it.size ? `Size: ${it.size}` : "", it.color ? `Color: ${it.color}` : ""].filter(Boolean).join(" • ") || "—";
+        const lineTotal = Number(it.price||0) * qty;
+        const image = it.image || "";
+
+        return `
+          <div class="item" data-idx="${idx}">
+            <div class="leftline">
+              ${image ? `<img class="thumb" src="${image}" alt="${name}">` : `<div class="thumb"></div>`}
+              <div>
+                <strong>${name}</strong>
+                <div class="meta">${meta}</div>
+                <div class="meta">Unit: ${fmt(it.price||0)}</div>
+              </div>
+            </div>
+
+            <div class="controls">
+              <div class="qty">
+                <button type="button" data-act="dec">−</button>
+                <div>${qty}</div>
+                <button type="button" data-act="inc">+</button>
+              </div>
+              <div class="price">${fmt(lineTotal)}</div>
+              <button type="button" class="btn secondary" style="padding:10px 12px" data-act="remove">Remove</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const sub = subtotal(cart);
+      elSubtotal.textContent = fmt(sub);
+      elTotal.textContent = fmt(sub);
+
+      cartSummary.value = JSON.stringify(cart);
+      orderTotal.value = String(sub);
+      copyTotal.dataset.totalText = fmt(sub);
+    }
+
+    elItems.addEventListener("click",(e)=>{
+      const btn = e.target.closest("button"); if(!btn) return;
+      const itemEl = e.target.closest(".item"); if(!itemEl) return;
+
+      const idx = Number(itemEl.dataset.idx);
+      const act = btn.dataset.act;
+
+      const cart = readCart();
+      if(!cart[idx]) return;
+
+      if(act==="inc") cart[idx].quantity = Number(cart[idx].quantity||1)+1;
+      if(act==="dec") cart[idx].quantity = Math.max(1, Number(cart[idx].quantity||1)-1);
+      if(act==="remove") cart.splice(idx,1);
+
+      writeCart(cart);
+      render();
+    });
+
+    async function copyText(t){ await navigator.clipboard.writeText(t); }
+
+    copyVipps?.addEventListener("click", async ()=>{
+      err.style.display="none"; ok.style.display="none";
+      try{ await copyText(vippsNumberEl.textContent.trim()); ok.textContent="Vipps number copied."; ok.style.display="block"; }
+      catch{ err.textContent="Copy failed. Number: 92928373"; err.style.display="block"; }
+    });
+
+    copyTotal?.addEventListener("click", async ()=>{
+      err.style.display="none"; ok.style.display="none";
+      const t = copyTotal.dataset.totalText || "";
+      if(!t) return;
+      try{ await copyText(t); ok.textContent="Total copied."; ok.style.display="block"; }
+      catch{ err.textContent="Copy failed. Please copy the Total above."; err.style.display="block"; }
+    });
+
+    sendBtn?.addEventListener("click", ()=>{
+      err.style.display="none"; ok.style.display="none";
+
+      if(!detailsForm.reportValidity()) return;
+
+      const cart = readCart();
+      if(!cart.length){
+        err.textContent="Your cart is empty.";
+        err.style.display="block";
+        return;
+      }
+
+      cartSummary.value = JSON.stringify(cart);
+      orderTotal.value = String(subtotal(cart));
+
+      detailsForm.submit();
+      ok.textContent="Order details sent. Please make sure you paid with Vipps.";
+      ok.style.display="block";
+    });
+
+    render();
+  </script>
+</body>
+</html>
