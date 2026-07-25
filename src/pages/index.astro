@@ -1,971 +1,284 @@
+
 <!DOCTYPE html>
 <html lang="no">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amic Biotech | Vitaminer og kosttilskudd</title>
-  <meta
-    name="description"
-    content="Amic Biotech tilbyr nøye utvalgte vitaminer og kosttilskudd i et rent, nøytralt og eksklusivt apotek-inspirert design."
-  />
+  <title>Amic Biotech</title>
   <style>
-    :root {
-      --bg: #f5f6f4;
-      --surface: #ffffff;
-      --surface-soft: #eef1ed;
-      --text: #18211c;
-      --muted: #5f6b64;
-      --line: #d8ded8;
-      --brand: #2e4b3c;
-      --brand-2: #6e8477;
-      --accent: #d4dfd8;
-      --shadow: 0 16px 40px rgba(24, 33, 28, 0.08);
-      --radius: 24px;
-      --radius-sm: 16px;
-      --max: 1200px;
-    }
-
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
 
     body {
-      font-family: "Inter", "Segoe UI", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(100% - 32px, var(--max));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      background: #e8ede8;
-      border-bottom: 1px solid var(--line);
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .topbar-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px 0;
-      flex-wrap: wrap;
+      background: #f7faf8;
+      color: #1c2b24;
+      line-height: 1.5;
     }
 
     header {
+      background: #0f5132;
+      color: white;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: rgba(245, 246, 244, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(216, 222, 216, 0.8);
     }
 
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 18px 0;
+    header h1 {
+      font-size: 24px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--brand), #18211c);
-      display: grid;
-      place-items: center;
+    nav a {
       color: white;
-      font-weight: 800;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .nav-actions {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      padding: 13px 22px;
-      font-weight: 600;
-      border: 1px solid transparent;
-      transition: 0.2s ease;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--brand);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: #243c30;
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border-color: var(--line);
-    }
-
-    .btn-secondary:hover {
-      background: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
     }
 
     .hero {
-      padding: 72px 0 36px;
-    }
-
-    .hero-grid {
+      min-height: 85vh;
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 28px;
-      align-items: stretch;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 60px 8%;
+      gap: 40px;
     }
 
-    .hero-card,
-    .hero-side {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card {
-      padding: 48px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 520px;
-      background:
-        radial-gradient(circle at top right, rgba(212, 223, 216, 0.8), transparent 28%),
-        var(--surface);
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: var(--surface-soft);
-      color: var(--brand);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: clamp(36px, 5vw, 64px);
-      line-height: 1.05;
-      margin-bottom: 18px;
-      letter-spacing: -0.03em;
+    .hero h2 {
+      font-size: 52px;
+      margin-bottom: 16px;
     }
 
     .hero p {
-      max-width: 620px;
-      color: var(--muted);
       font-size: 18px;
-      margin-bottom: 30px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 36px;
-    }
-
-    .hero-points {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .point {
-      background: var(--surface-soft);
-      border-radius: 18px;
-      padding: 18px;
-      border: 1px solid #e3e8e3;
-    }
-
-    .point strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 15px;
-    }
-
-    .point span {
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .hero-side {
-      padding: 22px;
-      display: grid;
-      gap: 18px;
-    }
-
-    .side-box {
-      background: linear-gradient(180deg, #fbfcfb, #f0f4f0);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 26px;
-    }
-
-    .bottle {
-      width: 100%;
-      height: 220px;
-      border-radius: 24px;
-      background: linear-gradient(180deg, #f8faf8, #dde6df);
-      position: relative;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      margin-bottom: 18px;
-    }
-
-    .bottle::before {
-      content: "";
-      width: 110px;
-      height: 150px;
-      border-radius: 24px 24px 30px 30px;
-      background: linear-gradient(180deg, #ffffff, #edf2ee);
-      box-shadow: 0 18px 30px rgba(31, 43, 35, 0.12);
-      position: absolute;
-      bottom: 28px;
-    }
-
-    .bottle::after {
-      content: "";
-      width: 68px;
-      height: 30px;
-      border-radius: 12px 12px 8px 8px;
-      background: #30483b;
-      position: absolute;
-      top: 38px;
-    }
-
-    .label {
-      position: relative;
-      z-index: 1;
-      margin-top: 40px;
-      text-align: center;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--brand);
-      font-weight: 700;
-    }
-
-    .side-box h3 {
-      font-size: 24px;
-      margin-bottom: 8px;
-    }
-
-    .side-box p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    section {
-      padding: 36px 0;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: end;
+      color: #4a5c53;
       margin-bottom: 24px;
+      max-width: 500px;
     }
 
-    .section-head h2 {
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+    .btn {
+      display: inline-block;
+      background: #16a34a;
+      color: white;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: bold;
     }
 
-    .section-head p {
-      max-width: 520px;
-      color: var(--muted);
+    .hero-card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    }
+
+    .hero-card img {
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    .section {
+      padding: 70px 8%;
+    }
+
+    .section h3 {
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-align: center;
     }
 
     .products {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
     }
 
-    .product-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .product-top {
+    .product {
+      background: white;
+      border-radius: 18px;
       padding: 24px;
-      background: linear-gradient(180deg, #f7faf7, #edf2ee);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .product-bottle {
-      height: 250px;
-      border-radius: 20px;
-      background: linear-gradient(180deg, #f4f7f4, #dbe5dd);
-      display: grid;
-      place-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product-bottle::before {
-      content: "";
-      width: 110px;
-      height: 160px;
-      border-radius: 24px 24px 30px 30px;
-      background: linear-gradient(180deg, #ffffff, #eef3ef);
-      box-shadow: 0 20px 30px rgba(24, 33, 28, 0.14);
-      position: absolute;
-      bottom: 24px;
-    }
-
-    .product-bottle::after {
-      content: "";
-      width: 66px;
-      height: 28px;
-      border-radius: 12px 12px 6px 6px;
-      background: var(--brand);
-      position: absolute;
-      top: 34px;
-    }
-
-    .product-tag {
-      position: relative;
-      z-index: 1;
-      margin-top: 34px;
-      color: var(--brand);
       text-align: center;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
     }
 
-    .product-body {
-      padding: 24px;
+    .product .icon {
+      font-size: 48px;
+      margin-bottom: 12px;
     }
 
-    .product-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
-      align-items: center;
+    .product h4 {
+      margin-bottom: 8px;
+      font-size: 20px;
     }
 
-    .product-meta span {
-      font-size: 13px;
-      color: var(--muted);
-      background: var(--surface-soft);
-      padding: 8px 12px;
-      border-radius: 999px;
-    }
-
-    .product-body h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .product-body p {
-      color: var(--muted);
-      margin-bottom: 18px;
-      min-height: 72px;
-    }
-
-    .benefits {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .benefits li {
-      color: var(--text);
-      font-size: 15px;
-      padding-left: 18px;
-      position: relative;
-    }
-
-    .benefits li::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--brand-2);
-      position: absolute;
-      left: 0;
-      top: 9px;
-    }
-
-    .price-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      margin-top: 18px;
+    .product p {
+      color: #5d6b64;
+      font-size: 14px;
+      margin-bottom: 12px;
     }
 
     .price {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
+      font-size: 22px;
+      font-weight: bold;
+      color: #0f5132;
+      margin-bottom: 14px;
     }
 
-    .about-grid,
-    .trust-grid,
-    .footer-grid {
+    .product button {
+      background: #0f5132;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .about {
       display: grid;
-      gap: 22px;
-    }
-
-    .about-grid {
       grid-template-columns: 1fr 1fr;
-    }
-
-    .about-card,
-    .trust-card,
-    .newsletter,
-    .footer-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    .about-card {
-      padding: 32px;
-    }
-
-    .about-card h3 {
-      font-size: 26px;
-      margin-bottom: 12px;
-    }
-
-    .about-card p {
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .mini-list {
-      list-style: none;
-      display: grid;
-      gap: 12px;
-    }
-
-    .mini-list li {
-      padding: 14px 16px;
-      background: var(--surface-soft);
-      border-radius: 16px;
-      color: var(--text);
-    }
-
-    .trust-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .trust-card {
-      padding: 26px;
-    }
-
-    .trust-card h4 {
-      font-size: 20px;
-      margin-bottom: 8px;
-    }
-
-    .trust-card p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .newsletter {
-      padding: 36px;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
+      gap: 30px;
       align-items: center;
-      margin-top: 18px;
     }
 
-    .newsletter h3 {
-      font-size: 28px;
-      margin-bottom: 8px;
+    .about-box {
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
     }
 
-    .newsletter p {
-      color: var(--muted);
-      max-width: 560px;
+    .contact {
+      text-align: center;
+      background: #e8f5ec;
+      border-radius: 20px;
+      padding: 40px 20px;
     }
 
-    .newsletter-form {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      min-width: 320px;
-      justify-content: flex-end;
-    }
-
-    .newsletter-form input {
-      border: 1px solid var(--line);
-      background: #fff;
-      padding: 14px 18px;
-      border-radius: 999px;
-      min-width: 240px;
-      outline: none;
-      font-size: 15px;
+    .contact p {
+      margin: 10px 0;
     }
 
     footer {
-      padding: 36px 0 60px;
-    }
-
-    .footer-grid {
-      grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr;
-    }
-
-    .footer-card {
-      padding: 24px;
-    }
-
-    .footer-card h4 {
-      margin-bottom: 12px;
-      font-size: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--muted);
-    }
-
-    .footer-card p,
-    .footer-card a {
-      color: var(--text);
-      font-size: 15px;
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .copyright {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 14px;
       text-align: center;
+      padding: 24px;
+      font-size: 14px;
+      color: #5d6b64;
     }
 
-    @media (max-width: 1024px) {
-      .hero-grid,
-      .about-grid,
-      .trust-grid,
-      .footer-grid,
-      .products {
+    @media (max-width: 900px) {
+      .hero,
+      .about {
         grid-template-columns: 1fr;
       }
 
-      .newsletter {
+      .hero h2 {
+        font-size: 38px;
+      }
+
+      header {
         flex-direction: column;
-        align-items: flex-start;
+        gap: 10px;
       }
 
-      .newsletter-form {
-        justify-content: flex-start;
-        min-width: 100%;
-      }
-
-      .hero-points {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .nav {
-        flex-wrap: wrap;
-      }
-
-      .nav-links {
-        width: 100%;
-        justify-content: space-between;
-        gap: 12px;
-        font-size: 14px;
-      }
-
-      .hero-card {
-        padding: 30px;
-      }
-
-      .section-head {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .price-row {
-        flex-direction: column;
-        align-items: flex-start;
+      nav a {
+        margin: 0 10px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <span>Kvalitetskontrollerte kosttilskudd fra Amic Biotech</span>
-      <span>Rask levering • Trygg handel • Nøytral premium profil</span>
-    </div>
-  </div>
 
   <header>
-    <div class="container nav">
-      <a href="#" class="brand">
-        <div class="brand-mark">A</div>
-        <span>Amic Biotech</span>
-      </a>
-
-      <nav class="nav-links">
-        <a href="#produkter">Produkter</a>
-        <a href="#om-oss">Om oss</a>
-        <a href="#kvalitet">Kvalitet</a>
-        <a href="#kontakt">Kontakt</a>
-      </nav>
-
-      <div class="nav-actions">
-        <a href="#produkter" class="btn btn-secondary">Se produkter</a>
-        <a href="#kontakt" class="btn btn-primary">Bestill nå</a>
-      </div>
-    </div>
+    <h1>Amic Biotech</h1>
+    <nav>
+      <a href="#produkter">Produkter</a>
+      <a href="#omoss">Om oss</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-card">
-          <div class="eyebrow">Vitenskapelig inspirert velvære</div>
-          <h1>Nøytrale og eksklusive kosttilskudd for daglig balanse</h1>
-          <p>
-            Amic Biotech tilbyr et kuratert utvalg av vitaminer og kosttilskudd
-            med et rent, troverdig og apotek-inspirert uttrykk. Utviklet for
-            kunder som ønsker kvalitet, enkelhet og tillit.
-          </p>
+  <section class="hero">
+    <div>
+      <h2>Premium vitaminer for hver dag</h2>
+      <p>Enkle produkter. Ren kvalitet. Bedre helse.</p>
+      <a href="#produkter" class="btn">Kjøp nå</a>
+    </div>
 
-          <div class="hero-actions">
-            <a href="#produkter" class="btn btn-primary">Utforsk produkter</a>
-            <a href="#om-oss" class="btn btn-secondary">Les mer</a>
-          </div>
+    <div class="hero-card">
+      <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&w=900&q=80" alt="Vitaminer">
+      <h3>Naturlig støtte</h3>
+      <p>Vitamin C, D3 og Multivitamin laget for daglig bruk.</p>
+    </div>
+  </section>
 
-          <div class="hero-points">
-            <div class="point">
-              <strong>Ren formulering</strong>
-              <span>Utvalgte ingredienser med tydelig profil.</span>
-            </div>
-            <div class="point">
-              <strong>Diskré premiumdesign</strong>
-              <span>Inspirert av moderne apotek og klinisk trygghet.</span>
-            </div>
-            <div class="point">
-              <strong>Daglig bruk</strong>
-              <span>Tre produkter tilpasset hverdagsbehov.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-side">
-          <div class="side-box">
-            <div class="bottle">
-              <div class="label">Amic Biotech / Signature Formula</div>
-            </div>
-            <h3>Formulert for moderne livsstil</h3>
-            <p>
-              En dempet visuell identitet med fokus på kvalitet, troverdighet
-              og enkel navigasjon for kunder som forventer et profesjonelt uttrykk.
-            </p>
-          </div>
-
-          <div class="side-box">
-            <h3>Utvalgte kategorier</h3>
-            <p>Immunitet • Energi • Restitusjon</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="produkter">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">Produkter</div>
-            <h2>Tre nøye utvalgte produkter</h2>
-          </div>
-          <p>
-            Et fokusert sortiment gir et ryddig og eksklusivt inntrykk, samtidig
-            som det gjør det enklere for kundene å velge riktig produkt.
-          </p>
-        </div>
-
-        <div class="products">
-          <article class="product-card">
-            <div class="product-top">
-              <div class="product-bottle">
-                <div class="product-tag">Vitamin D3</div>
-              </div>
-            </div>
-            <div class="product-body">
-              <div class="product-meta">
-                <span>Immunitet</span>
-                <span>60 kapsler</span>
-              </div>
-              <h3>Amic D3 Balance</h3>
-              <p>
-                Et raffinert daglig tilskudd utviklet for å støtte immunforsvar
-                og normal muskelfunksjon i en enkel og trygg rutine.
-              </p>
-              <ul class="benefits">
-                <li>Høy kvalitet med ren profil</li>
-                <li>Egnet for daglig bruk</li>
-                <li>Diskré og premium presentasjon</li>
-              </ul>
-              <div class="price-row">
-                <div class="price">249 kr</div>
-                <a href="#kontakt" class="btn btn-primary">Kjøp produkt</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-top">
-              <div class="product-bottle">
-                <div class="product-tag">Omega-3</div>
-              </div>
-            </div>
-            <div class="product-body">
-              <div class="product-meta">
-                <span>Hjerte & fokus</span>
-                <span>90 kapsler</span>
-              </div>
-              <h3>Amic Omega Pure</h3>
-              <p>
-                En eksklusiv omega-3-formulering med et rent og balansert uttrykk,
-                tilpasset kunder som prioriterer kvalitet og velvære.
-              </p>
-              <ul class="benefits">
-                <li>Designet for daglig rutine</li>
-                <li>Premium og profesjonell fremtoning</li>
-                <li>Ideell i et moderne apotekkonsept</li>
-              </ul>
-              <div class="price-row">
-                <div class="price">329 kr</div>
-                <a href="#kontakt" class="btn btn-primary">Kjøp produkt</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-top">
-              <div class="product-bottle">
-                <div class="product-tag">Magnesium</div>
-              </div>
-            </div>
-            <div class="product-body">
-              <div class="product-meta">
-                <span>Restitusjon</span>
-                <span>60 tabletter</span>
-              </div>
-              <h3>Amic Magnesium Calm</h3>
-              <p>
-                Et nøytralt formulert kosttilskudd for kunder som ønsker støtte
-                til daglig velvære, restitusjon og en rolig kveldsmassasje av rutinen.
-              </p>
-              <ul class="benefits">
-                <li>Minimalistisk og troverdig profil</li>
-                <li>Passer premium helsekonsept</li>
-                <li>Enkel å presentere i nettbutikk</li>
-              </ul>
-              <div class="price-row">
-                <div class="price">279 kr</div>
-                <a href="#kontakt" class="btn btn-primary">Kjøp produkt</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="om-oss">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">Om Amic Biotech</div>
-            <h2>Et moderne helsebrand med klinisk ro</h2>
-          </div>
-          <p>
-            Designet er bygd for å gi kunden følelsen av kvalitet, ryddighet og
-            tillit, slik man forventer fra et eksklusivt apotekmiljø.
-          </p>
-        </div>
-
-        <div class="about-grid">
-          <div class="about-card">
-            <h3>Vårt konsept</h3>
-            <p>
-              Amic Biotech kombinerer et rent visuelt uttrykk med et tydelig
-              produktsortiment. Målet er å skape en netthandelsopplevelse som
-              oppleves profesjonell, trygg og premium.
-            </p>
-            <p>
-              Denne løsningen passer godt for salg av vitaminer, mineraler og
-              kosttilskudd med fokus på kvalitet fremfor støy.
-            </p>
-          </div>
-
-          <div class="about-card">
-            <h3>Hvorfor denne stilen fungerer</h3>
-            <ul class="mini-list">
-              <li>Nøytrale farger skaper tillit og ro.</li>
-              <li>Eksklusiv layout gir høyere opplevd verdi.</li>
-              <li>Enkel struktur gjør produktene lettere å forstå.</li>
-              <li>Apotek-inspirert design styrker seriøsiteten.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="kvalitet">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">Kvalitet og trygghet</div>
-            <h2>Bygget for tillit</h2>
-          </div>
-          <p>
-            En troverdig supplement-side trenger et språk og et design som føles
-            presist, rolig og profesjonelt.
-          </p>
-        </div>
-
-        <div class="trust-grid">
-          <div class="trust-card">
-            <h4>Kontrollert profil</h4>
-            <p>
-              Produktpresentasjonen er ren og oversiktlig, uten unødvendig
-              visuell støy.
-            </p>
-          </div>
-          <div class="trust-card">
-            <h4>Premium opplevelse</h4>
-            <p>
-              Store flater, myke kontraster og elegante kort gir et eksklusivt preg.
-            </p>
-          </div>
-          <div class="trust-card">
-            <h4>Klar kommunikasjon</h4>
-            <p>
-              Hver seksjon er laget for å gjøre det enkelt å lese, forstå og handle.
-            </p>
-          </div>
-        </div>
-
-        <div class="newsletter">
-          <div>
-            <h3>Motta nyheter fra Amic Biotech</h3>
-            <p>
-              Få informasjon om nye produkter, tilbud og helseinnhold tilpasset
-              et moderne kosttilskuddsbrand.
-            </p>
-          </div>
-
-          <form class="newsletter-form">
-            <input type="email" placeholder="Din e-postadresse" />
-            <button type="submit" class="btn btn-primary">Meld deg på</button>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer id="kontakt">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-card">
-          <h4>Amic Biotech</h4>
-          <p>Eksklusive vitaminer og kosttilskudd i et nøytralt apotek-uttrykk.</p>
-          <p>Oslo, Norge</p>
-        </div>
-
-        <div class="footer-card">
-          <h4>Produkter</h4>
-          <a href="#produkter">Amic D3 Balance</a>
-          <a href="#produkter">Amic Omega Pure</a>
-          <a href="#produkter">Amic Magnesium Calm</a>
-        </div>
-
-        <div class="footer-card">
-          <h4>Kundeservice</h4>
-          <a href="mailto:kontakt@amicbiotech.no">kontakt@amicbiotech.no</a>
-          <a href="tel:+4700000000">+47 00 00 00 00</a>
-        </div>
-
-        <div class="footer-card">
-          <h4>Informasjon</h4>
-          <a href="#">Personvern</a>
-          <a href="#">Levering</a>
-          <a href="#">Vilkår</a>
-        </div>
+  <section class="section" id="produkter">
+    <h3>Våre vitaminer</h3>
+    <div class="products">
+      <div class="product">
+        <div class="icon">🍊</div>
+        <h4>Vitamin C</h4>
+        <p>Daglig støtte for immunforsvar.</p>
+        <div class="price">199 kr</div>
+        <button onclick="buyProduct('Vitamin C')">Kjøp</button>
       </div>
 
-      <div class="copyright">
-        © 2026 Amic Biotech. Alle rettigheter reservert.
+      <div class="product">
+        <div class="icon">☀️</div>
+        <h4>Vitamin D3</h4>
+        <p>For energi og velvære.</p>
+        <div class="price">229 kr</div>
+        <button onclick="buyProduct('Vitamin D3')">Kjøp</button>
+      </div>
+
+      <div class="product">
+        <div class="icon">💊</div>
+        <h4>Multivitamin</h4>
+        <p>Alt-i-ett for hverdagen.</p>
+        <div class="price">249 kr</div>
+        <button onclick="buyProduct('Multivitamin')">Kjøp</button>
       </div>
     </div>
+  </section>
+
+  <section class="section" id="omoss">
+    <div class="about">
+      <div class="about-box">
+        <h3>Om Amic Biotech</h3>
+        <p>Vi selger moderne vitaminer med enkelt fokus: kvalitet, trygghet og daglig helse.</p>
+      </div>
+      <div class="about-box">
+        <h3>Hvorfor velge oss</h3>
+        <p>Rene produkter, enkel bestilling og rask levering.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kontakt">
+    <div class="contact">
+      <h3>Kontakt</h3>
+      <p>E-post: contact@amicbiotech.com</p>
+      <p>Telefon: +47 99 99 99 99</p>
+      <p>Oslo, Norge</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Amic Biotech. Alle rettigheter reservert.
   </footer>
+
+  <script>
+    function buyProduct(productName) {
+      alert("Du valgte: " + productName);
+    }
+  </script>
+
 </body>
 </html>
