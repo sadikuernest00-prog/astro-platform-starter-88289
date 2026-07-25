@@ -1,490 +1,728 @@
 ---
-const base = import.meta.env.BASE_URL ?? "/";
-
-// helper: always build correct URL (works on / and subfolders)
-const img = (path) => `${base}${path.replace(/^\/+/, "")}`;
-
 const products = [
   {
-    id: "set-black",
-    name: "Black Satin-Look Cami & Shorts Set",
-    price: 499,
-    image: "/images/set-black.png",
-    colors: ["Black"],
-    sizes: ["S", "M", "L"],
-    defaultColor: "Black",
+    name: "Vitamin D3 + K2",
+    description: "Daglig støtte for immunforsvar, skjelett og generell balanse.",
+    price: "249 kr",
+    badge: "Bestselger",
+    color: "linear-gradient(135deg, #3d9a61, #245d3e)"
   },
   {
-    id: "set-white",
-    name: "White Satin-Look Cami & Shorts Set",
-    price: 499,
-    image: "/images/set-white.png",
-    colors: ["White"],
-    sizes: ["S", "M", "L"],
-    defaultColor: "White",
+    name: "Vitamin C 1000 mg",
+    description: "Et klassisk valg for immunforsvar og antioksidantstøtte.",
+    price: "199 kr",
+    badge: "Populær",
+    color: "linear-gradient(135deg, #ffb347, #f37f1f)"
   },
   {
-    id: "nude-slip",
-    name: "Nude Satin-Look Slip Dress",
-    price: 499,
-    image: "/images/nude-slipp-dress.png",
-    colors: ["Nude"],
-    sizes: ["S", "M", "L"],
-    defaultColor: "Nude",
+    name: "Vitamin B12",
+    description: "Passer for deg som ønsker energi og fokus i hverdagen.",
+    price: "219 kr",
+    badge: "Energi",
+    color: "linear-gradient(135deg, #5ba8ff, #2b6ecb)"
   },
   {
-    id: "white-slip",
-    name: "White Satin-Look Slip Dress",
-    price: 499,
-    image: "/images/white-slip-dress.png",
-    colors: ["White"],
-    sizes: ["S", "M", "L"],
-    defaultColor: "White",
+    name: "Multivitamin Komplett",
+    description: "En balansert miks av viktige vitaminer og mineraler.",
+    price: "289 kr",
+    badge: "Komplett",
+    color: "linear-gradient(135deg, #ff8bb1, #df4c82)"
   },
   {
-    id: "black-chemise",
-    name: "Black Satin-Look Chemise Dress",
-    price: 499,
-    image: "/images/black-chemise.png",
-    colors: ["Black"],
-    sizes: ["S", "M", "L"],
-    defaultColor: "Black",
-  },
-
-  // bras
-  {
-    id: "white-soft-bra",
-    name: "White Soft Comfort Bra",
-    price: 380,
-    image: "/images/white-soft-bra.png",
-    colors: ["White"],
-    sizes: ["75B", "80B", "85B", "90B", "95B"],
-    defaultColor: "White",
+    name: "Magnesium Balance",
+    description: "Støtte for muskler, restitusjon og ro i kroppen.",
+    price: "239 kr",
+    badge: "Restitusjon",
+    color: "linear-gradient(135deg, #f2c94c, #d99b00)"
   },
   {
-    id: "black-soft-bra",
-    name: "Black Soft Comfort Bra",
-    price: 380,
-    image: "/images/black-soft-bra.png",
-    colors: ["Black"],
-    sizes: ["75B", "80B", "85B", "90B", "95B"],
-    defaultColor: "Black",
-  },
-  {
-    id: "grey-soft-bra",
-    name: "Grey Soft Comfort Bra",
-    price: 380,
-    image: "/images/grey-soft.png",
-    colors: ["Grey"],
-    sizes: ["75B", "80B", "85B", "90B", "95B"],
-    defaultColor: "Grey",
-  },
-  {
-    id: "white-sport-bra",
-    name: "White Sport Bra",
-    price: 380,
-    image: "/images/white-sport-bra.png",
-    colors: ["White"],
-    sizes: ["75B", "80B", "85B", "90B", "95B"],
-    defaultColor: "White",
-  },
-  {
-    id: "white-set-bra",
-    name: "White Set Bra",
-    price: 380,
-    image: "/images/white-set-bra.png",
-    colors: ["White"],
-    sizes: ["75B", "80B", "85B", "90B", "95B"],
-    defaultColor: "White",
-  },
+    name: "Omega 3 Premium",
+    description: "Et godt tilskudd for hjerte, hjerne og generell helse.",
+    price: "299 kr",
+    badge: "Premium",
+    color: "linear-gradient(135deg, #9b7bff, #6048bd)"
+  }
 ];
 ---
 
-<!doctype html>
-<html lang="en">
+<html lang="no">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amicbridge</title>
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Amic Biotech | Vitaminer for en bedre hverdag</title>
+    <meta
+      name="description"
+      content="Amic Biotech tilbyr kvalitetsvitaminer og kosttilskudd for energi, immunforsvar og daglig velvære."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      :root{
-        --bg:#f7f6f4;
-        --text:#151515;
-        --muted:#6b6b6b;
-        --border:#dedede;
-        --card:#ffffff;
-      }
-      *{ box-sizing:border-box; }
-      body{
-        margin:0;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        background:var(--bg);
-        color:var(--text);
-      }
-
-      header{
-        padding:26px 44px;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-      }
-      .brand{
-        font-weight:800;
-        letter-spacing:.08em;
-        text-transform:uppercase;
-        font-size:18px;
-      }
-      nav{
-        display:flex;
-        gap:26px;
-        align-items:center;
-      }
-      nav a{
-        color:var(--text);
-        text-decoration:none;
-        font-size:16px;
-        font-weight:500;
-      }
-      nav a:hover{ text-decoration:underline; }
-
-      .badge{
-        display:inline-flex;
-        align-items:center;
-        justify-content:center;
-        min-width:22px;
-        height:22px;
-        padding:0 6px;
-        border-radius:999px;
-        border:1px solid var(--border);
-        font-size:12px;
-        color:var(--muted);
-        background:#fff;
-        margin-left:8px;
+      :root {
+        --bg: #f7faf7;
+        --surface: #ffffff;
+        --text: #1d2a22;
+        --muted: #5d6b62;
+        --primary: #2f7d4f;
+        --primary-dark: #215c39;
+        --accent: #dff3e6;
+        --border: #e3ebe5;
+        --shadow: 0 10px 30px rgba(20, 40, 25, 0.08);
+        --radius: 18px;
+        --container: 1180px;
       }
 
-      main{
-        max-width:1200px;
-        margin:0 auto;
-        padding:0 44px 80px;
+      * {
+        box-sizing: border-box;
       }
 
-      .hero{
-        margin-top:110px;
-        max-width:820px;
-      }
-      .hero h1{
-        margin:0 0 18px;
-        font-size:72px;
-        line-height:1.05;
-        letter-spacing:-0.02em;
-      }
-      .hero p{
-        margin:0;
-        color:var(--muted);
-        font-size:20px;
-        max-width:560px;
+      html {
+        scroll-behavior: smooth;
       }
 
-      .sectionTitle{
-        margin-top:90px;
-        font-size:22px;
-        font-weight:700;
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
       }
 
-      .products{
-        margin-top:18px;
-        display:grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap:24px;
-      }
-      .card{
-        background:var(--card);
-        border:1px solid var(--border);
-        padding:16px;
-      }
-      .card img{
-        width:100%;
-        height:420px;
-        object-fit:cover;
-        background:#eee;
-        border:1px solid var(--border);
+      a {
+        color: inherit;
+        text-decoration: none;
       }
 
-      .name{
-        margin:12px 0 4px;
-        font-size:18px;
-        font-weight:700;
-      }
-      .price{
-        margin:0 0 10px;
-        font-weight:800;
+      .container {
+        width: min(100% - 32px, var(--container));
+        margin: 0 auto;
       }
 
-      .label{
-        margin:12px 0 8px;
-        color:var(--muted);
-        font-size:12px;
-        text-transform:uppercase;
-        letter-spacing:.06em;
-      }
-      .grid{
-        display:grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap:10px;
-      }
-      .opt{
-        border:1px solid var(--border);
-        background:#fff;
-        padding:12px 10px;
-        cursor:pointer;
-        text-align:center;
-        font-size:15px;
-      }
-      .opt.active{
-        border-color:var(--text);
-        outline:2px solid rgba(0,0,0,.06);
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(247, 250, 247, 0.92);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
       }
 
-      .qty{
-        display:grid;
-        grid-template-columns: 56px 70px 56px;
-        border:1px solid var(--border);
-        width:max-content;
-      }
-      .qty button{
-        border:0;
-        background:#fff;
-        padding:12px 0;
-        cursor:pointer;
-        font-size:18px;
-      }
-      .qty div{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        border-left:1px solid var(--border);
-        border-right:1px solid var(--border);
-        font-size:14px;
+      .nav {
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
       }
 
-      .actions{
-        display:grid;
-        grid-template-columns: 1fr 1fr;
-        gap:10px;
-        margin-top:14px;
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        font-size: 1.05rem;
       }
-      .btn{
-        padding:12px 10px;
-        border:1px solid var(--text);
-        background:#fff;
-        cursor:pointer;
-        font-size:14px;
-        font-weight:700;
-      }
-      .btn.primary{
-        background:var(--text);
-        color:#fff;
-      }
-      .btn.secondary{
-        border-color:var(--border);
-        font-weight:700;
-      }
-      .msg{
-        margin:10px 0 0;
-        font-size:12px;
-        min-height:16px;
-        color:#1a7f37;
-      }
-      .msg.bad{ color:#b42318; }
 
-      @media (max-width: 900px){
-        header{ padding:18px 18px; }
-        main{ padding:0 18px 60px; }
-        .hero{ margin-top:70px; }
-        .hero h1{ font-size:48px; }
+      .logo-mark {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: var(--primary);
+        color: white;
+      }
+
+      .menu {
+        display: flex;
+        gap: 24px;
+        color: var(--muted);
+      }
+
+      .menu a:hover {
+        color: var(--text);
+      }
+
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 18px;
+        background: var(--text);
+        color: white;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+
+      .hero {
+        padding: 88px 0 70px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 40px;
+        align-items: center;
+      }
+
+      .badge,
+      .section-tag,
+      .pill {
+        display: inline-block;
+        padding: 8px 14px;
+        background: var(--accent);
+        color: var(--primary-dark);
+        border-radius: 999px;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.2rem, 5vw, 4.2rem);
+        line-height: 1.08;
+        margin: 18px 0;
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 1.08rem;
+        max-width: 640px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        margin: 28px 0;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 22px;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: 0.2s ease;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+      }
+
+      .btn-secondary {
+        background: white;
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      .hero-points {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .hero-card {
+        background: linear-gradient(160deg, #e5f7eb, #fafffb);
+        border: 1px solid #d9ecdf;
+        border-radius: 28px;
+        padding: 30px;
+        min-height: 360px;
+        display: grid;
+        place-items: center;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-product {
+        background: white;
+        border-radius: 24px;
+        padding: 28px;
+        width: 100%;
+        max-width: 320px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-product h3 {
+        margin: 16px 0 8px;
+        font-size: 1.5rem;
+      }
+
+      .hero-product strong {
+        font-size: 1.5rem;
+        color: var(--primary-dark);
+      }
+
+      .trust {
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        background: white;
+      }
+
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 22px 0;
+        text-align: center;
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      .section {
+        padding: 88px 0;
+      }
+
+      .alt {
+        background: #f1f7f2;
+      }
+
+      .section-head {
+        max-width: 740px;
+        margin-bottom: 34px;
+      }
+
+      .section-head h2 {
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        margin: 12px 0 8px;
+      }
+
+      .section-head p {
+        color: var(--muted);
+      }
+
+      .product-grid,
+      .benefit-grid,
+      .testimonial-grid,
+      .contact-grid,
+      .footer-grid {
+        display: grid;
+        gap: 24px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .product-card,
+      .benefit-card,
+      .contact-card,
+      .about-box,
+      .testimonial-grid blockquote {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px;
+        box-shadow: var(--shadow);
+      }
+
+      .product-image {
+        height: 180px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 18px;
+        font-size: 2rem;
+        font-weight: 800;
+        color: white;
+      }
+
+      .product-card h3 {
+        margin-bottom: 8px;
+      }
+
+      .product-card p {
+        color: var(--muted);
+        min-height: 52px;
+      }
+
+      .product-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 18px;
+        gap: 14px;
+      }
+
+      .price {
+        font-size: 1.2rem;
+        color: var(--primary-dark);
+        font-weight: 800;
+      }
+
+      .shop-btn {
+        padding: 11px 16px;
+        border-radius: 999px;
+        background: var(--primary);
+        color: white;
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+
+      .benefit-grid,
+      .contact-grid,
+      .testimonial-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 30px;
+        align-items: start;
+      }
+
+      .about-box h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+
+      .about-box ul {
+        padding-left: 18px;
+        margin: 0;
+      }
+
+      .newsletter-box {
+        background: linear-gradient(140deg, #214d34, #2f7d4f);
+        color: white;
+        border-radius: 28px;
+        padding: 38px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .newsletter-form {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .newsletter-form input {
+        flex: 1;
+        min-width: 220px;
+        border: none;
+        padding: 15px 18px;
+        border-radius: 999px;
+        font: inherit;
+      }
+
+      .contact-card h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+      }
+
+      footer {
+        background: #15201a;
+        color: #d9e5dc;
+        padding-top: 52px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr;
+        padding-bottom: 32px;
+      }
+
+      footer h3,
+      footer h4 {
+        color: white;
+        margin-bottom: 10px;
+      }
+
+      footer a {
+        display: block;
+        margin-bottom: 8px;
+        color: #d9e5dc;
+      }
+
+      .copyright {
+        text-align: center;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        padding: 18px;
+        color: #afbeb3;
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .about-grid,
+        .newsletter-box,
+        .product-grid,
+        .benefit-grid,
+        .testimonial-grid,
+        .contact-grid,
+        .footer-grid,
+        .trust-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .menu {
+          display: none;
+        }
+
+        .hero {
+          padding-top: 48px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+
+        .btn,
+        .nav-cta,
+        .shop-btn {
+          width: 100%;
+          text-align: center;
+        }
       }
     </style>
   </head>
 
   <body>
-    <header>
-      <div class="brand">AMIC UNDERWEAR</div>
-      <nav>
-        <a href="#shop">Shop</a>
-        <a href="https://wa.me/4792928373" target="_blank" rel="noopener">Contact</a>
-
-        <!-- checkout is src/pages/checkout.astro -->
-        <a href={`${base}checkout`}>
-          Checkout <span class="badge" id="cartCount">0</span>
+    <header class="topbar">
+      <div class="container nav">
+        <a href="/" class="logo">
+          <span class="logo-mark">A</span>
+          <span>Amic Biotech</span>
         </a>
-      </nav>
+
+        <nav class="menu">
+          <a href="#produkter">Produkter</a>
+          <a href="#fordeler">Fordeler</a>
+          <a href="#om-oss">Om oss</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+
+        <a href="#produkter" class="nav-cta">Kjøp nå</a>
+      </div>
     </header>
 
     <main>
       <section class="hero">
-        <h1>everday comfort. Designed beautifully.</h1>
-        <p>
-          Amic Underwear creates soft, supportive essentials designed to move with your body -
-          made for confidence, comfort, and real life.
-        </p>
+        <div class="container hero-grid">
+          <div>
+            <span class="badge">Norsk vitaminbutikk</span>
+            <h1>Vitaminer fra Amic Biotech for energi, balanse og velvære</h1>
+            <p>
+              Oppdag nøye utvalgte vitaminer og kosttilskudd utviklet for en aktiv hverdag.
+              Enkle produkter, tydelige fordeler og høy kvalitet.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#produkter" class="btn btn-primary">Se produkter</a>
+              <a href="#om-oss" class="btn btn-secondary">Les mer</a>
+            </div>
+
+            <div class="hero-points">
+              <span>Høy kvalitet</span>
+              <span>Rask levering</span>
+              <span>Trygg betaling</span>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="hero-product">
+              <div class="pill">Bestselger</div>
+              <h3>Vitamin D3 + K2</h3>
+              <p>Støtter immunforsvar, skjelett og daglig balanse.</p>
+              <strong>249 kr</strong>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <h2 id="shop" class="sectionTitle">Shop</h2>
+      <section class="trust">
+        <div class="container trust-grid">
+          <div>Naturlig inspirerte ingredienser</div>
+          <div>Utviklet for daglig bruk</div>
+          <div>Norsk språk og kundestøtte</div>
+        </div>
+      </section>
 
-      <section class="products" aria-label="Products">
-        {products.map((p) => (
-          <article
-            class="card"
-            data-product
-            data-id={p.id}
-            data-name={p.name}
-            data-price={p.price}
-          >
-            <img src={img(p.image)} alt={p.name} />
+      <section id="produkter" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="section-tag">Produkter</span>
+            <h2>Populære vitaminer</h2>
+            <p>
+              Et sterkt utvalg av daglige favoritter for immunforsvar, energi og fokus.
+            </p>
+          </div>
 
-            <div class="name">{p.name}</div>
-            <div class="price">{p.price} NOK</div>
+          <div class="product-grid">
+            {products.map((product) => (
+              <article class="product-card">
+                <div class="product-image" style={`background:${product.color}`}>
+                  {product.badge}
+                </div>
+                <h3>{product.name}</h3>
+                <p>{product.description}</p>
+                <div class="product-meta">
+                  <span class="price">{product.price}</span>
+                  <a href="#kontakt" class="shop-btn">Bestill nå</a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div class="label">Size</div>
-            <div class="grid sizes">
-              {p.sizes.map((s) => (
-                <button class="opt" type="button" data-size={s}>{s}</button>
-              ))}
+      <section id="fordeler" class="section alt">
+        <div class="container">
+          <div class="section-head">
+            <span class="section-tag">Hvorfor velge oss</span>
+            <h2>Enklere helsevalg med Amic Biotech</h2>
+          </div>
+
+          <div class="benefit-grid">
+            <div class="benefit-card">
+              <h3>Kvalitet først</h3>
+              <p>Vi fokuserer på produkter som passer moderne behov og daglig bruk.</p>
             </div>
-
-            <div class="label">Color</div>
-            <div class="grid colors">
-              {p.colors.map((c) => (
-                <button
-                  class={`opt ${c === p.defaultColor ? "active" : ""}`}
-                  type="button"
-                  data-color={c}
-                >
-                  {c}
-                </button>
-              ))}
+            <div class="benefit-card">
+              <h3>Tydelig informasjon</h3>
+              <p>Enkle beskrivelser som gjør det lettere å velge riktig vitamin.</p>
             </div>
-
-            <div class="label">Quantity</div>
-            <div class="qty" role="group" aria-label="Quantity selector">
-              <button type="button" data-minus>-</button>
-              <div data-qty>1</div>
-              <button type="button" data-plus>+</button>
+            <div class="benefit-card">
+              <h3>For hele familien</h3>
+              <p>Sortiment som passer både aktive voksne og familier i en travel hverdag.</p>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div class="actions">
-              <button class="btn secondary" type="button" data-remove>Remove</button>
-              <button class="btn primary" type="button" data-add>Add to cart</button>
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="section-tag">Kundeopplevelser</span>
+            <h2>Hva kundene sier</h2>
+          </div>
+
+          <div class="testimonial-grid">
+            <blockquote>
+              “Rask levering og produkter som er enkle å forstå. Kommer til å bestille igjen.”
+              <footer>– Ingrid, Oslo</footer>
+            </blockquote>
+            <blockquote>
+              “Vitamin D3 og magnesium har blitt fast del av rutinen min.”
+              <footer>– Martin, Bergen</footer>
+            </blockquote>
+            <blockquote>
+              “Flott design, enkel bestilling og god oversikt over produktene.”
+              <footer>– Sara, Trondheim</footer>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section id="om-oss" class="section alt">
+        <div class="container about-grid">
+          <div>
+            <span class="section-tag">Om oss</span>
+            <h2>Amic Biotech</h2>
+            <p>
+              Amic Biotech er et merke for deg som ønsker kvalitetsvitaminer med et rent,
+              moderne og tillitsvekkende uttrykk. Målet vårt er å gjøre helseprodukter lettere
+              å forstå og enklere å bruke i hverdagen.
+            </p>
+            <p>
+              Vi tror på tydelig kommunikasjon, høy kvalitet og produkter som passer ekte behov.
+            </p>
+          </div>
+
+          <div class="about-box">
+            <h3>Vårt løfte</h3>
+            <ul>
+              <li>Kvalitetsfokus</li>
+              <li>Trygg handel</li>
+              <li>Moderne kundereise</li>
+              <li>Norsk innhold</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container newsletter-box">
+          <div>
+            <span class="section-tag" style="background: rgba(255,255,255,0.16); color: white;">
+              Nyhetsbrev
+            </span>
+            <h2>Få tilbud og helsetips først</h2>
+            <p>Meld deg på for produktnyheter, kampanjer og nyttig inspirasjon.</p>
+          </div>
+
+          <form class="newsletter-form">
+            <input type="email" placeholder="Din e-postadresse" />
+            <a href="#kontakt" class="btn btn-secondary">Meld meg på</a>
+          </form>
+        </div>
+      </section>
+
+      <section id="kontakt" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="section-tag">Kontakt</span>
+            <h2>Vi hjelper deg gjerne</h2>
+            <p>Har du spørsmål om produkter, levering eller bestilling? Ta kontakt.</p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h3>E-post</h3>
+              <p>kontakt@amicbridge.com</p>
             </div>
-
-            <p class="msg" data-msg></p>
-          </article>
-        ))}
+            <div class="contact-card">
+              <h3>Telefon</h3>
+              <p>+47 00 00 00 00</p>
+            </div>
+            <div class="contact-card">
+              <h3>Adresse</h3>
+              <p>Oslo, Norge</p>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
-    <script>
-      const CART_KEY = "amicbridge_cart_v1";
+    <footer>
+      <div class="container footer-grid">
+        <div>
+          <h3>Amic Biotech</h3>
+          <p>Vitaminer og kosttilskudd for en bedre hverdag.</p>
+        </div>
+        <div>
+          <h4>Hurtiglenker</h4>
+          <a href="#produkter">Produkter</a>
+          <a href="#om-oss">Om oss</a>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+        <div>
+          <h4>Informasjon</h4>
+          <a href="#">Kjøpsvilkår</a>
+          <a href="#">Personvern</a>
+          <a href="#">Retur og levering</a>
+        </div>
+      </div>
 
-      function readCart() {
-        try { return JSON.parse(localStorage.getItem(CART_KEY) || "[]"); }
-        catch { return []; }
-      }
-      function writeCart(cart) {
-        localStorage.setItem(CART_KEY, JSON.stringify(cart));
-        updateCartCount();
-      }
-      function updateCartCount() {
-        const count = readCart().reduce((sum, i) => sum + (Number(i.qty) || 0), 0);
-        const el = document.getElementById("cartCount");
-        if (el) el.textContent = String(count);
-      }
-      function setMsg(card, text, ok=true){
-        const el = card.querySelector("[data-msg]");
-        if(!el) return;
-        el.textContent = text;
-        el.classList.toggle("bad", !ok);
-      }
-
-      document.querySelectorAll("[data-product]").forEach((card) => {
-        let qty = 1;
-        let size = null;
-        let color = card.querySelector(".colors .opt.active")?.dataset.color || null;
-
-        // Size
-        card.querySelectorAll(".sizes .opt").forEach((b) => {
-          b.addEventListener("click", () => {
-            card.querySelectorAll(".sizes .opt").forEach((x) => x.classList.remove("active"));
-            b.classList.add("active");
-            size = b.dataset.size;
-            setMsg(card, "");
-          });
-        });
-
-        // Color
-        card.querySelectorAll(".colors .opt").forEach((b) => {
-          b.addEventListener("click", () => {
-            card.querySelectorAll(".colors .opt").forEach((x) => x.classList.remove("active"));
-            b.classList.add("active");
-            color = b.dataset.color;
-            setMsg(card, "");
-          });
-        });
-
-        // Quantity
-        const qtyEl = card.querySelector("[data-qty]");
-        card.querySelector("[data-plus]").addEventListener("click", () => {
-          qty = Math.min(99, qty + 1);
-          qtyEl.textContent = String(qty);
-        });
-        card.querySelector("[data-minus]").addEventListener("click", () => {
-          qty = Math.max(1, qty - 1);
-          qtyEl.textContent = String(qty);
-        });
-
-        // Add to cart
-        card.querySelector("[data-add]").addEventListener("click", () => {
-          if (!size) return setMsg(card, "Please select a size.", false);
-          if (!color) return setMsg(card, "Please select a color.", false);
-
-          const cart = readCart();
-          const productId = card.dataset.id;
-          const name = card.dataset.name;
-          const price = Number(card.dataset.price) || 0;
-
-          const existing = cart.find(i => i.productId === productId && i.size === size && i.color === color);
-          if (existing) existing.qty += qty;
-          else cart.push({ productId, name, price, size, color, qty });
-
-          writeCart(cart);
-          setMsg(card, "Added to cart ✓");
-        });
-
-        // Remove exact size+color variant from cart
-        card.querySelector("[data-remove]").addEventListener("click", () => {
-          if (!size || !color) return setMsg(card, "Select size & color to remove.", false);
-
-          let cart = readCart();
-          const before = cart.length;
-
-          cart = cart.filter(
-            (i) =>
-              !(
-                i.productId === card.dataset.id &&
-                i.size === size &&
-                i.color === color
-              )
-          );
-
-          if (cart.length === before) return setMsg(card, "Item not in cart.", false);
-
-          writeCart(cart);
-          setMsg(card, "Removed from cart ✓");
-        });
-      });
-
-      updateCartCount();
-    </script>
+      <div class="copyright">
+        © 2026 Amic Biotech. Alle rettigheter reservert.
+      </div>
+    </footer>
   </body>
 </html>
