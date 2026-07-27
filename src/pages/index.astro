@@ -1,284 +1,340 @@
-
 <!DOCTYPE html>
-<html lang="no">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amic Biotech</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Landing Page</title>
 
-    body {
-      background: #f7faf8;
-      color: #1c2b24;
-      line-height: 1.5;
-    }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-    header {
-      background: #0f5132;
-      color: white;
-      padding: 20px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-    }
+body{
+    background:#f5f7fa;
+    color:#333;
+}
 
-    header h1 {
-      font-size: 24px;
-    }
+header{
+    background:#0f172a;
+    color:white;
+    position:sticky;
+    top:0;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 14px;
-    }
+nav{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+}
 
-    .hero {
-      min-height: 85vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 60px 8%;
-      gap: 40px;
-    }
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
 
-    .hero h2 {
-      font-size: 52px;
-      margin-bottom: 16px;
-    }
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
 
-    .hero p {
-      font-size: 18px;
-      color: #4a5c53;
-      margin-bottom: 24px;
-      max-width: 500px;
-    }
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
 
-    .btn {
-      display: inline-block;
-      background: #16a34a;
-      color: white;
-      text-decoration: none;
-      padding: 14px 24px;
-      border-radius: 10px;
-      font-weight: bold;
-    }
+nav a:hover{
+    color:#38bdf8;
+}
 
-    .hero-card {
-      background: white;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-    }
+.hero{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    height:90vh;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    padding:20px;
+}
 
-    .hero-card img {
-      width: 100%;
-      border-radius: 16px;
-      margin-bottom: 20px;
-    }
+.hero-content{
+    max-width:700px;
+}
 
-    .section {
-      padding: 70px 8%;
-    }
+.hero h1{
+    font-size:60px;
+    margin-bottom:20px;
+}
 
-    .section h3 {
-      font-size: 32px;
-      margin-bottom: 30px;
-      text-align: center;
-    }
+.hero p{
+    font-size:20px;
+    line-height:1.6;
+    margin-bottom:30px;
+}
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-    }
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    background:white;
+    color:#2563eb;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
 
-    .product {
-      background: white;
-      border-radius: 18px;
-      padding: 24px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-    }
+.btn:hover{
+    transform:translateY(-4px);
+}
 
-    .product .icon {
-      font-size: 48px;
-      margin-bottom: 12px;
-    }
+section{
+    padding:80px 20px;
+}
 
-    .product h4 {
-      margin-bottom: 8px;
-      font-size: 20px;
-    }
+.container{
+    max-width:1200px;
+    margin:auto;
+}
 
-    .product p {
-      color: #5d6b64;
-      font-size: 14px;
-      margin-bottom: 12px;
-    }
+.title{
+    text-align:center;
+    margin-bottom:50px;
+}
 
-    .price {
-      font-size: 22px;
-      font-weight: bold;
-      color: #0f5132;
-      margin-bottom: 14px;
-    }
+.title h2{
+    font-size:40px;
+    margin-bottom:10px;
+}
 
-    .product button {
-      background: #0f5132;
-      color: white;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
 
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      align-items: center;
-    }
+.card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+}
 
-    .about-box {
-      background: white;
-      padding: 30px;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-    }
+.card:hover{
+    transform:translateY(-8px);
+}
 
-    .contact {
-      text-align: center;
-      background: #e8f5ec;
-      border-radius: 20px;
-      padding: 40px 20px;
-    }
+.card h3{
+    margin:20px 0;
+}
 
-    .contact p {
-      margin: 10px 0;
-    }
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
 
-    footer {
-      text-align: center;
-      padding: 24px;
-      font-size: 14px;
-      color: #5d6b64;
-    }
+.about img{
+    width:100%;
+    border-radius:20px;
+}
 
-    @media (max-width: 900px) {
-      .hero,
-      .about {
-        grid-template-columns: 1fr;
-      }
+.contact{
+    background:#0f172a;
+    color:white;
+    border-radius:20px;
+    padding:40px;
+}
 
-      .hero h2 {
-        font-size: 38px;
-      }
+form{
+    display:grid;
+    gap:20px;
+}
 
-      header {
-        flex-direction: column;
-        gap: 10px;
-      }
+input,textarea{
+    padding:15px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
 
-      nav a {
-        margin: 0 10px;
-      }
-    }
-  </style>
+button{
+    padding:15px;
+    background:#38bdf8;
+    border:none;
+    color:white;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0ea5e9;
+}
+
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top:60px;
+}
+
+@media(max-width:800px){
+
+.hero h1{
+    font-size:40px;
+}
+
+.about{
+    grid-template-columns:1fr;
+}
+
+nav{
+    flex-direction:column;
+    gap:15px;
+}
+}
+</style>
+
 </head>
 <body>
 
-  <header>
-    <h1>Amic Biotech</h1>
-    <nav>
-      <a href="#produkter">Produkter</a>
-      <a href="#omoss">Om oss</a>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
-  </header>
+<header>
+<nav>
+<div class="logo">MyWebsite</div>
 
-  <section class="hero">
-    <div>
-      <h2>Premium vitaminer for hver dag</h2>
-      <p>Enkle produkter. Ren kvalitet. Bedre helse.</p>
-      <a href="#produkter" class="btn">Kjøp nå</a>
-    </div>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 
-    <div class="hero-card">
-      <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&w=900&q=80" alt="Vitaminer">
-      <h3>Naturlig støtte</h3>
-      <p>Vitamin C, D3 og Multivitamin laget for daglig bruk.</p>
-    </div>
-  </section>
+</nav>
+</header>
 
-  <section class="section" id="produkter">
-    <h3>Våre vitaminer</h3>
-    <div class="products">
-      <div class="product">
-        <div class="icon">🍊</div>
-        <h4>Vitamin C</h4>
-        <p>Daglig støtte for immunforsvar.</p>
-        <div class="price">199 kr</div>
-        <button onclick="buyProduct('Vitamin C')">Kjøp</button>
-      </div>
+<section class="hero" id="home">
+<div class="hero-content">
+<h1>Build Amazing Websites</h1>
 
-      <div class="product">
-        <div class="icon">☀️</div>
-        <h4>Vitamin D3</h4>
-        <p>For energi og velvære.</p>
-        <div class="price">229 kr</div>
-        <button onclick="buyProduct('Vitamin D3')">Kjøp</button>
-      </div>
+<p>
+Create beautiful, responsive websites with modern design,
+fast performance, and an excellent user experience.
+</p>
 
-      <div class="product">
-        <div class="icon">💊</div>
-        <h4>Multivitamin</h4>
-        <p>Alt-i-ett for hverdagen.</p>
-        <div class="price">249 kr</div>
-        <button onclick="buyProduct('Multivitamin')">Kjøp</button>
-      </div>
-    </div>
-  </section>
+<a href="#features" class="btn">Get Started</a>
 
-  <section class="section" id="omoss">
-    <div class="about">
-      <div class="about-box">
-        <h3>Om Amic Biotech</h3>
-        <p>Vi selger moderne vitaminer med enkelt fokus: kvalitet, trygghet og daglig helse.</p>
-      </div>
-      <div class="about-box">
-        <h3>Hvorfor velge oss</h3>
-        <p>Rene produkter, enkel bestilling og rask levering.</p>
-      </div>
-    </div>
-  </section>
+</div>
+</section>
 
-  <section class="section" id="kontakt">
-    <div class="contact">
-      <h3>Kontakt</h3>
-      <p>E-post: contact@amicbiotech.com</p>
-      <p>Telefon: +47 99 99 99 99</p>
-      <p>Oslo, Norge</p>
-    </div>
-  </section>
+<section id="features">
+<div class="container">
 
-  <footer>
-    © 2026 Amic Biotech. Alle rettigheter reservert.
-  </footer>
+<div class="title">
+<h2>Features</h2>
+<p>Everything you need for a modern website.</p>
+</div>
 
-  <script>
-    function buyProduct(productName) {
-      alert("Du valgte: " + productName);
-    }
-  </script>
+<div class="features">
+
+<div class="card">
+<h3>⚡ Fast</h3>
+<p>Optimized for speed and performance.</p>
+</div>
+
+<div class="card">
+<h3>📱 Responsive</h3>
+<p>Looks great on desktop, tablet, and mobile.</p>
+</div>
+
+<div class="card">
+<h3>🎨 Beautiful Design</h3>
+<p>Modern layout with smooth styling.</p>
+</div>
+
+<div class="card">
+<h3>🔒 Secure</h3>
+<p>Built with clean and organized code.</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section id="about">
+<div class="container about">
+
+<div>
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900" alt="Office">
+</div>
+
+<div>
+<h2>About Us</h2>
+
+<br>
+
+<p>
+We create modern digital experiences that combine
+beautiful design with powerful technology.
+Our goal is to help businesses and creators build
+professional online experiences.
+</p>
+
+<br>
+
+<a href="#" class="btn">Learn More</a>
+
+</div>
+
+</div>
+</section>
+
+<section id="contact">
+
+<div class="container">
+
+<div class="contact">
+
+<h2>Contact Us</h2>
+
+<br>
+
+<form>
+
+<input type="text" placeholder="Your Name">
+
+<input type="email" placeholder="Email">
+
+<textarea rows="6" placeholder="Your Message"></textarea>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>© 2026 MyWebsite. All Rights Reserved.</p>
+
+</footer>
 
 </body>
 </html>
