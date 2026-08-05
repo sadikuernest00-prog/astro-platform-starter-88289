@@ -1,138 +1,107 @@
 ---
+import "../styles/global.css";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login | Amic</title>
 
     <style>
-      :root {
-        font-family:
-          Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          sans-serif;
-        color: #111827;
-        background:
-          radial-gradient(circle at top left, #dbeafe, transparent 35%),
-          #f4f7fb;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
       body {
         margin: 0;
-      }
-
-      button,
-      input {
-        font: inherit;
+        min-height: 100vh;
+        background: #f3f6fb;
+        color: #0f172a;
+        font-family: Arial, sans-serif;
       }
 
       .page {
         min-height: 100vh;
-        display: grid;
-        place-items: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding: 24px;
       }
 
       .card {
-        width: min(100%, 430px);
+        width: 100%;
+        max-width: 420px;
         padding: 36px;
-        background: rgba(255, 255, 255, 0.96);
-        border: 1px solid #e2e8f0;
+        background: white;
         border-radius: 28px;
         box-shadow: 0 25px 70px rgba(15, 23, 42, 0.12);
       }
 
-      .brand {
+      h1 {
         margin: 0;
-        font-size: 42px;
-        letter-spacing: -2px;
+        font-size: 46px;
       }
 
       .subtitle {
-        margin: 8px 0 28px;
+        margin: 10px 0 28px;
         color: #64748b;
-      }
-
-      .field {
-        margin-bottom: 17px;
       }
 
       label {
         display: block;
-        margin-bottom: 7px;
-        font-size: 14px;
-        font-weight: 700;
+        margin: 16px 0 7px;
+        font-weight: bold;
       }
 
       input {
         width: 100%;
-        padding: 14px 15px;
+        padding: 14px;
         border: 1px solid #cbd5e1;
         border-radius: 12px;
-        outline: none;
-      }
-
-      input:focus {
-        border-color: #2563eb;
-        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
-      }
-
-      .buttons {
-        display: grid;
-        gap: 12px;
-        margin-top: 22px;
+        font-size: 16px;
+        box-sizing: border-box;
       }
 
       button {
         width: 100%;
-        padding: 14px 18px;
+        margin-top: 14px;
+        padding: 14px;
         border: 0;
         border-radius: 12px;
+        font-size: 16px;
+        font-weight: bold;
         cursor: pointer;
-        font-weight: 800;
       }
 
-      .primary {
+      #login-button {
+        margin-top: 24px;
         background: #111827;
         color: white;
       }
 
-      .secondary {
+      #signup-button {
         background: #e2e8f0;
         color: #111827;
       }
 
       button:disabled {
-        cursor: not-allowed;
         opacity: 0.6;
+        cursor: not-allowed;
       }
 
-      .message {
+      #message {
         display: none;
         margin-top: 18px;
-        padding: 12px 14px;
-        border-radius: 11px;
+        padding: 13px;
+        border-radius: 10px;
         font-size: 14px;
-        line-height: 1.4;
       }
 
-      .message.error {
+      #message.error {
         display: block;
         background: #fee2e2;
         color: #991b1b;
       }
 
-      .message.success {
+      #message.success {
         display: block;
         background: #dcfce7;
         color: #166534;
@@ -141,8 +110,8 @@
       .back {
         display: block;
         margin-top: 24px;
-        color: #475569;
         text-align: center;
+        color: #475569;
         text-decoration: none;
       }
     </style>
@@ -151,53 +120,40 @@
   <body>
     <main class="page">
       <section class="card">
-        <h1 class="brand">Amic</h1>
+        <h1>Amic</h1>
         <p class="subtitle">Log in or create your account.</p>
 
         <form id="auth-form">
-          <div class="field">
-            <label for="email">Email address</label>
+          <label for="email">Email</label>
 
-            <input
-              id="email"
-              name="email"
-              type="email"
-              autocomplete="email"
-              placeholder="name@example.com"
-              required
-            />
-          </div>
+          <input
+            id="email"
+            type="email"
+            placeholder="name@example.com"
+            autocomplete="email"
+            required
+          />
 
-          <div class="field">
-            <label for="password">Password</label>
+          <label for="password">Password</label>
 
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autocomplete="current-password"
-              minlength="6"
-              placeholder="At least 6 characters"
-              required
-            />
-          </div>
+          <input
+            id="password"
+            type="password"
+            placeholder="Minimum 6 characters"
+            autocomplete="current-password"
+            minlength="6"
+            required
+          />
 
-          <div class="buttons">
-            <button id="login-button" class="primary" type="submit">
-              Log in
-            </button>
+          <button id="login-button" type="submit">
+            Log in
+          </button>
 
-            <button id="signup-button" class="secondary" type="button">
-              Create account
-            </button>
-          </div>
+          <button id="signup-button" type="button">
+            Create account
+          </button>
 
-          <div
-            id="message"
-            class="message"
-            role="status"
-            aria-live="polite"
-          ></div>
+          <div id="message"></div>
         </form>
 
         <a class="back" href="/">← Back to home</a>
@@ -207,46 +163,24 @@
     <script>
       import {
         createUserWithEmailAndPassword,
-        onAuthStateChanged,
-        signInWithEmailAndPassword,
+        signInWithEmailAndPassword
       } from "firebase/auth";
 
       import { auth } from "../firebase";
 
-      const form = document.querySelector<HTMLFormElement>("#auth-form");
-      const emailInput =
-        document.querySelector<HTMLInputElement>("#email");
-      const passwordInput =
-        document.querySelector<HTMLInputElement>("#password");
+      const form = document.getElementById("auth-form");
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
+      const loginButton = document.getElementById("login-button");
+      const signupButton = document.getElementById("signup-button");
+      const message = document.getElementById("message");
 
-      const loginButton =
-        document.querySelector<HTMLButtonElement>("#login-button");
-      const signupButton =
-        document.querySelector<HTMLButtonElement>("#signup-button");
-
-      const message =
-        document.querySelector<HTMLDivElement>("#message");
-
-      if (
-        !form ||
-        !emailInput ||
-        !passwordInput ||
-        !loginButton ||
-        !signupButton ||
-        !message
-      ) {
-        throw new Error("Login page elements could not be found.");
-      }
-
-      function showMessage(
-        text: string,
-        type: "success" | "error",
-      ): void {
+      function showMessage(text, type) {
         message.textContent = text;
-        message.className = `message ${type}`;
+        message.className = type;
       }
 
-      function setLoading(loading: boolean): void {
+      function setLoading(loading) {
         loginButton.disabled = loading;
         signupButton.disabled = loading;
 
@@ -255,25 +189,15 @@
           : "Log in";
       }
 
-      function readableError(error: unknown): string {
-        if (!(error instanceof Error)) {
-          return "Something went wrong. Please try again.";
-        }
-
-        const code =
-          "code" in error && typeof error.code === "string"
-            ? error.code
-            : "";
+      function getErrorMessage(error) {
+        const code = error?.code;
 
         switch (code) {
           case "auth/invalid-email":
             return "Enter a valid email address.";
 
-          case "auth/missing-password":
-            return "Enter your password.";
-
           case "auth/weak-password":
-            return "Password must contain at least 6 characters.";
+            return "The password must contain at least 6 characters.";
 
           case "auth/email-already-in-use":
             return "An account already exists with this email.";
@@ -281,34 +205,22 @@
           case "auth/invalid-credential":
             return "The email or password is incorrect.";
 
-          case "auth/too-many-requests":
-            return "Too many attempts. Wait a moment and try again.";
-
-          case "auth/network-request-failed":
-            return "Network error. Check your internet connection.";
-
           case "auth/operation-not-allowed":
             return "Email/password login is not enabled in Firebase.";
 
-          default:
-            return error.message;
-        }
-      }
+          case "auth/network-request-failed":
+            return "Network problem. Check your internet connection.";
 
-      function getCredentials(): {
-        email: string;
-        password: string;
-      } {
-        return {
-          email: emailInput.value.trim(),
-          password: passwordInput.value,
-        };
+          default:
+            return error?.message || "Something went wrong.";
+        }
       }
 
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        const { email, password } = getCredentials();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
 
         try {
           setLoading(true);
@@ -316,24 +228,28 @@
           await signInWithEmailAndPassword(
             auth,
             email,
-            password,
+            password
           );
 
-          showMessage("Login successful. Opening dashboard...", "success");
+          showMessage("Login successful.", "success");
 
-          window.location.assign("/dashboard");
+          window.location.href = "/dashboard";
         } catch (error) {
-          showMessage(readableError(error), "error");
+          showMessage(getErrorMessage(error), "error");
         } finally {
           setLoading(false);
         }
       });
 
       signupButton.addEventListener("click", async () => {
-        const { email, password } = getCredentials();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
 
-        if (!email || !password) {
-          showMessage("Enter an email and password first.", "error");
+        if (!email || password.length < 6) {
+          showMessage(
+            "Enter an email and a password with at least 6 characters.",
+            "error"
+          );
           return;
         }
 
@@ -343,25 +259,16 @@
           await createUserWithEmailAndPassword(
             auth,
             email,
-            password,
+            password
           );
 
-          showMessage(
-            "Account created. Opening dashboard...",
-            "success",
-          );
+          showMessage("Account created successfully.", "success");
 
-          window.location.assign("/dashboard");
+          window.location.href = "/dashboard";
         } catch (error) {
-          showMessage(readableError(error), "error");
+          showMessage(getErrorMessage(error), "error");
         } finally {
           setLoading(false);
-        }
-      });
-
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          window.location.replace("/dashboard");
         }
       });
     </script>
