@@ -1,90 +1,122 @@
 ---
+const appName = "Amic";
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta
+			name="description"
+			content="Amic — track your investments, savings and financial goals."
+		/>
+		<title>{appName}</title>
+	</head>
 
-    <title>Amic</title>
+	<body>
+		<main class="page">
+			<section class="welcome-card">
+				<div class="logo">Amic</div>
 
-    <style>
-      :root {
-        font-family:
-          Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          sans-serif;
-        color: #111827;
-        background: #f4f7fb;
-      }
+				<p class="tagline">Invest. Store. Grow.</p>
 
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-      }
-
-      .page {
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        padding: 24px;
-      }
-
-      .hero {
-        width: min(100%, 900px);
-        text-align: center;
-        padding: 70px 30px;
-        background: white;
-        border-radius: 30px;
-        box-shadow: 0 25px 70px rgba(15, 23, 42, 0.1);
-      }
-
-      .logo {
-        margin: 0;
-        font-size: clamp(48px, 10vw, 90px);
-        letter-spacing: -5px;
-      }
-
-      .tagline {
-        margin: 16px 0 35px;
-        font-size: 21px;
-        color: #64748b;
-      }
-
-      .button {
-        display: inline-block;
-        padding: 15px 28px;
-        border-radius: 14px;
-        background: #111827;
-        color: white;
-        font-weight: 700;
-        text-decoration: none;
-        transition:
-          transform 0.2s ease,
-          opacity 0.2s ease;
-      }
-
-      .button:hover {
-        transform: translateY(-2px);
-        opacity: 0.9;
-      }
-    </style>
-  </head>
-
-  <body>
-    <main class="page">
-      <section class="hero">
-        <h1 class="logo">Amic</h1>
-        <p class="tagline">Invest. Store. Grow.</p>
-
-        <a class="button" href="/login">Open Amic</a>
-      </section>
-    </main>
-  </body>
+				<a class="open-button" href="/login">
+					Open Amic
+				</a>
+			</section>
+		</main>
+	</body>
 </html>
+
+<style>
+	:global(*) {
+		box-sizing: border-box;
+	}
+
+	:global(body) {
+		margin: 0;
+		font-family:
+			Inter, Arial, Helvetica, sans-serif;
+		background: #f1f4f9;
+		color: #101827;
+	}
+
+	.page {
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 40px;
+	}
+
+	.welcome-card {
+		width: min(1400px, 100%);
+		min-height: 590px;
+		background: white;
+		border-radius: 48px;
+		box-shadow: 0 30px 70px rgba(15, 23, 42, 0.1);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: 50px 24px;
+	}
+
+	.logo {
+		font-size: clamp(80px, 10vw, 145px);
+		font-weight: 800;
+		letter-spacing: -8px;
+		line-height: 1;
+	}
+
+	.tagline {
+		margin: 35px 0 55px;
+		font-size: clamp(24px, 3vw, 36px);
+		font-weight: 500;
+		color: #71809a;
+	}
+
+	.open-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 225px;
+		padding: 22px 35px;
+		border-radius: 22px;
+		background: #101827;
+		color: white;
+		font-size: 25px;
+		font-weight: 700;
+		text-decoration: none;
+		transition:
+			transform 0.2s ease,
+			opacity 0.2s ease;
+	}
+
+	.open-button:hover {
+		transform: translateY(-2px);
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.page {
+			padding: 18px;
+		}
+
+		.welcome-card {
+			min-height: 500px;
+			border-radius: 30px;
+		}
+
+		.logo {
+			letter-spacing: -5px;
+		}
+
+		.open-button {
+			font-size: 20px;
+			min-width: 190px;
+		}
+	}
+</style>
